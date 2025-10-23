@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+kind create cluster --config cluster.yml
+
 MYSQL_NODES=$(kubectl get nodes -l app=mysql -o name || true)
 if [[ -n "$MYSQL_NODES" ]]; then
   while IFS= read -r node; do
